@@ -1,7 +1,7 @@
 // Record plugin
 
 import WaveSurfer from 'wavesurfer.js'
-import RecordPlugin from 'wavesurfer.js/dist/plugins/record.esm.js'
+import RecordPlugin from 'wavesurfer.js/dist/plugins/record.js'
 
 let wavesurfer, record
 let scrollingWaveform = false
@@ -13,8 +13,14 @@ const createWaveSurfer = () => {
   }
   wavesurfer = WaveSurfer.create({
     container: '#mic',
-    waveColor: 'rgb(200, 0, 200)',
     progressColor: 'rgb(100, 0, 100)',
+    waveColor: "#22c55e",
+    height: 100,
+    barWidth: 25,
+    barGap: 2,
+    barRadius: 25,
+    barAlign: "bottom",
+
   })
 
   // Initialize the Record plugin
