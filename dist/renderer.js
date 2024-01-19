@@ -279,9 +279,6 @@ class Renderer extends EventEmitter {
                 const topBarHeight = Math.round(maxTop * halfHeight * vScale);
                 const bottomBarHeight = Math.round(maxBottom * halfHeight * vScale);
                 let barHeight = topBarHeight + bottomBarHeight + barStartHeight;
-                console.log('barWidth:', barWidth);
-                console.log('barHeight:', barHeight);
-                console.log('barStartHeight:', barStartHeight);
                 // Vertical alignment
                 let y = halfHeight - topBarHeight;
                 if (options.barAlign === 'top') {
