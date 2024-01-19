@@ -264,7 +264,7 @@ class Renderer extends EventEmitter {
         const halfHeight = height / 2;
         const pixelRatio = window.devicePixelRatio || 1;
         const barWidth = options.barWidth ? options.barWidth * pixelRatio : 1;
-        const barStartHeight = options.barStartHeight || 1;
+        const barStartHeight = options.barStartHeight ? options.barStartHeight * pixelRatio : 1;
         const barGap = options.barGap ? options.barGap * pixelRatio : options.barWidth ? barWidth / 2 : 0;
         const barRadius = options.barRadius || 0;
         const barIndexScale = width / (barWidth + barGap) / length;
@@ -278,7 +278,7 @@ class Renderer extends EventEmitter {
             if (x > prevX) {
                 const topBarHeight = Math.round(maxTop * halfHeight * vScale);
                 const bottomBarHeight = Math.round(maxBottom * halfHeight * vScale);
-                const barHeight = topBarHeight + bottomBarHeight + barStartHeight;
+                let barHeight = topBarHeight + bottomBarHeight + barStartHeight;
                 // Vertical alignment
                 let y = halfHeight - topBarHeight;
                 if (options.barAlign === 'top') {
