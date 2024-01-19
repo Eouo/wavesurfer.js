@@ -21,6 +21,8 @@ export type WaveSurferOptions = {
     barGap?: number;
     /** Rounded borders for bars */
     barRadius?: number;
+    /** bar start height */
+    barStartHeight?: number;
     /** A vertical scaling factor for the waveform */
     barHeight?: number;
     /** Vertical bar alignment */
