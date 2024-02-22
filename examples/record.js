@@ -14,17 +14,21 @@ const createWaveSurfer = () => {
   wavesurfer = WaveSurfer.create({
     container: '#mic',
     progressColor: 'rgb(100, 0, 100)',
-    waveColor: "#22c55e",
+    waveColor: '#22c55e',
     height: 100,
+    width: 80,
     barWidth: 25,
     barGap: 2,
     barRadius: 25,
-    barAlign: "bottom",
+    barAlign: 'bottom',
+    barStartHeight: 25,
 
   })
 
   // Initialize the Record plugin
-  record = wavesurfer.registerPlugin(RecordPlugin.create({ scrollingWaveform, renderRecordedAudio: false }))
+  record = wavesurfer.registerPlugin(RecordPlugin.create({ scrollingWaveform,
+    scrollingWaveformWindow: 0.2,
+    renderRecordedAudio: false }))
   // Render recorded audio
   record.on('record-end', (blob) => {
     const container = document.querySelector('#recordings')
@@ -36,6 +40,13 @@ const createWaveSurfer = () => {
       waveColor: 'rgb(200, 100, 0)',
       progressColor: 'rgb(100, 50, 0)',
       url: recordedUrl,
+      height: 100,
+      width: 80,
+      barWidth: 25,
+      barGap: 2,
+      barRadius: 25,
+      barAlign: 'bottom',
+      barStartHeight: 25,
     })
 
     // Play button

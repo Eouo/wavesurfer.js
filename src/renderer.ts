@@ -106,7 +106,9 @@ class Renderer extends EventEmitter<RendererEvents> {
     const delay = this.createDelay(100)
     this.resizeObserver = new ResizeObserver(() => {
       delay()
-        .then(() => this.onContainerResize())
+        .then(() => {
+          this.onContainerResize()
+        })
         .catch(() => undefined)
     })
     this.resizeObserver.observe(this.scrollContainer)
@@ -210,11 +212,11 @@ class Renderer extends EventEmitter<RendererEvents> {
         }
       </style>
 
-      <div class="scroll" part="scroll">
-        <div class="wrapper" part="wrapper">
-          <div class="canvases"></div>
-          <div class="progress" part="progress"></div>
-          <div class="cursor" part="cursor"></div>
+      <div class='scroll' part='scroll'>
+        <div class='wrapper' part='wrapper'>
+          <div class='canvases'></div>
+          <div class='progress' part='progress'></div>
+          <div class='cursor' part='cursor'></div>
         </div>
       </div>
     `
@@ -324,14 +326,19 @@ class Renderer extends EventEmitter<RendererEvents> {
     let prevX = 0
     let maxTop = 0
     let maxBottom = 0
+    console.log('length', length)
     for (let i = 0; i <= length; i++) {
       const x = Math.round(i * barIndexScale)
 
       if (x > prevX) {
         const topBarHeight = Math.round(maxTop * halfHeight * vScale)
         const bottomBarHeight = Math.round(maxBottom * halfHeight * vScale)
-        let barHeight = topBarHeight + bottomBarHeight + barStartHeight
-
+        const barHeight = topBarHeight + bottomBarHeight + barStartHeight
+        // barHeight = barHeight / 1.5
+        // if (barHeight < barStartHeight) {
+        //   barHeight = barStartHeight
+        // }
+        // barHeight = Math.round(barHeight)
         // Vertical alignment
         let y = halfHeight - topBarHeight
         if (options.barAlign === 'top') {
@@ -542,6 +549,7 @@ class Renderer extends EventEmitter<RendererEvents> {
         const delay = this.createDelay()
         for (let i = start; i >= 0; i -= viewportLen) {
           await delay()
+          console.log(1)
           draw(Math.max(0, i - viewportLen), i)
         }
       })(),
@@ -551,6 +559,7 @@ class Renderer extends EventEmitter<RendererEvents> {
         const delay = this.createDelay()
         for (let i = end; i < dataLength; i += viewportLen) {
           await delay()
+          console.log(1)
           draw(i, Math.min(dataLength, i + viewportLen))
         }
       })(),
