@@ -275,7 +275,6 @@ class Renderer extends EventEmitter {
         let prevX = 0;
         let maxTop = 0;
         let maxBottom = 0;
-        console.log('length', length);
         for (let i = 0; i <= length; i++) {
             const x = Math.round(i * barIndexScale);
             if (x > prevX) {
